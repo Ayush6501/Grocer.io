@@ -10,3 +10,6 @@ Grocer.IO is as en e-commerce website to sell fruits, vegetables & groceries.
 6. Checkout using the checkout button
 7. Fill the required details
 8. You have successfully purchased your products
+
+Server can be created by just typing 'flask run' on the terminal.
+Website can be easily navigated through using the above instructions.
