@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Cart
+{% endblock %}
+
+{% block main %}
+    <div "width:100%"  style="padding-bottom: 200px;">
+        <table style="width:100%" id="tables" class="container p-5">
+        <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price(₹)</th>
+        <th>Total(₹)</th>
+        </tr>
+        {% for i in range(lenrow) %}
+            <tr>
+                <td>{{ kart[i][1] }}</td>
+                <td>{{ kart[i][2] }}</td>
+                <td>{{ kart[i][3] }}</td>
+                <td>{{ kart[i][4] }}</td>
+                <td>
+                    <form action="/cart" method="post">
+                        <button class="btn btn-primary" name="p_id" value="{{ kart[i][6] }}" type="submit">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </div>
+    <div style="width:100%">
+        <h3 >Subtotal ({{ lenrow }} items) = ₹ {{ kart_total[0][0] }}</h3>
+        <br>
+        <form action="/cart" method="post">
+            <a class="btn btn-primary" id="submit" name="submit" value="{{ kart_total[0][0] }}" href="/checkout">Checkout</a></form>
+        <br><br><br>
+    </div>
+
+    <script>
+        document.querySelector("#submit").onclick = function() {
+            if(document.querySelector("#submit").value === "[0]") {
+                document.querySelector("#submit").disabled = true;
+            } else {
+                document.querySelector("#submit").disabled = false;
+            }
+        }
+    </script>
+{% endblock %}

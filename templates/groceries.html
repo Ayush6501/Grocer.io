@@ -1,0 +1,59 @@
+{% extends "layoutf.html" %}
+
+{% block title %}
+    Grocery
+{% endblock %}
+
+{% block main %}
+    <div>
+        <div class="w3-container w3-black w3-allerta" style="left: 50%;">
+      <p class="centred" style="font-size: 70px">Grocery</p>
+    </div>
+    </div>
+
+    <div class="container">
+    <div class="row">
+        <div class="col-12 ptop col-sm-3">
+            <div class="cards  bg-light mb-3">
+                <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                <ul class="list-group category_block">
+                    <li class="list-group-item active"><a href="/groceries">Grocery</a></li>
+                    <li class="list-group-item"><a href="/fruit">Fruits</a></li>
+                    <li class="list-group-item"><a href="/vegetable">Vegetable</a></li>
+                    <li class="list-group-item"><a href="/healthcare">Healthcare</a></li>
+                </ul>
+            </div>
+        </div>
+    <div class="col">
+        <div class="row">
+            {% for i in range(lenrows) %}
+            <div class="col-12 col-md-6 col-lg-4 ptop">
+                <div class="card">
+                    <img class="card-img-top prodimg" src="{{ rows[i]['loc'] }}" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="col card-title">
+                                <p class="card-text">₹ {{ rows[i]['cost'] }}</p>
+                        </div>
+                        <h4 class="card-title">{{ rows[i]['name'] }}</h4>
+                        <p class="card-text">{{ rows[i]['desc'] }}</p>
+                        <div class="row">
+                            <div class="col">
+                                <form action="/groceries" method="post">
+                                    <input name="quantity" placeholder="Quantity" type="int">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <br>
+                                <button class="btn btn-success" name="p_id" value="{{ rows[i]['product_id'] }}" type="submit">Add to cart</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
